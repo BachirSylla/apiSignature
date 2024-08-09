@@ -3,8 +3,13 @@ from cryptography.hazmat.primitives.serialization import pkcs12, Encoding, Priva
 import os
 import tempfile
 import requests
+from flask_cors import CORS
+
+
+
 
 app = Flask(__name__)
+CORS(app)
 
 # Chemin vers le fichier P12 et la passphrase
 P12_FILE_PATH = 'app/certs/application_de_test.p12'
@@ -66,6 +71,12 @@ def sign_document():
         return send_file(signed_path, as_attachment=True, download_name='signed_document.pdf')
     else:
         return jsonify({'error': 'Error signing document', 'message': response.text}), response.status_code
+
+
+
+
+app = Flask(__name__)
+CORS(app)
 
 '''if __name__ == '__main__':
     app.run(debug=True)'''
