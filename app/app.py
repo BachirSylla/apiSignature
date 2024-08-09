@@ -67,5 +67,16 @@ def sign_document():
     else:
         return jsonify({'error': 'Error signing document', 'message': response.text}), response.status_code
 
+'''if __name__ == '__main__':
+    app.run(debug=True)'''
+    
+    
+@app.route('/')
+def home():
+    return "API is up and running!"
+   
+    
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))  # Utiliser la variable d'environnement PORT ou le port 5000 par défaut
+    app.run(host='0.0.0.0', port=port)
